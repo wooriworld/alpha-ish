@@ -37,3 +37,9 @@ yarn-error.log*
 
 # Lock files
 package-lock.json
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+server/.venv/
