@@ -1,36 +1,208 @@
-# alpha-ish (alpha-ish)
+# 📊 Alpha-ish 프로젝트 기획서
 
-A Quasar Project
-## Install the dependencies
-```bash
-yarn
-# or
-npm install
-```
+## 1. 프로젝트 개요
 
-### Start the app in development mode (hot-code reloading, error reporting, etc.)
-```bash
-quasar dev
-```
+### 🔤 프로젝트명: Alpha-ish
 
-### Lint the files
-```bash
-yarn lint
-# or
-npm run lint
-```
+**Alpha-ish 의미**
 
-### Format the files
-```bash
-yarn format
-# or
-npm run format
-```
+- Alpha: 시장 대비 초과 수익
+- -ish: ~같은, 애매한
 
-### Build the app for production
-```bash
-quasar build
-```
+👉 **"수익 날 것 같긴 한데… 확실하진 않은 전략"**
+👉 투자 전략의 불확실성을 유머러스하게 표현한 이름
 
-### Customize the configuration
-See [Configuring quasar.config.js](https://v2.quasar.dev/quasar-cli-vite/quasar-config-js).
+---
+
+## 2. 프로젝트 목표
+
+### 🎯 핵심 목표
+
+> 다양한 주식 전략을 직접 테스트하고  
+> 성과를 비교할 수 있는 웹 플랫폼 구축
+
+### 📌 최종 지향점
+
+- 전략별 수익률 비교
+- 데이터 기반 의사결정 지원
+- 개인 투자자용 백테스트 툴
+
+---
+
+## 3. 벤치마킹
+
+- TradingView 차트 기반 UI/UX 참고
+- URL: https://kr.tradingview.com/chart/xq7Za5Be/?symbol=KRX%3AS111%21
+
+### 🔍 벤치마킹 요소
+
+- 인터랙티브 차트
+- 심볼 검색 기능
+- 지표/전략 시각화
+- 사용자 친화적 UI
+
+---
+
+## 4. 주요 기능
+
+### 4.1 종목 검색
+
+- 한국 / 미국 주식 통합 검색
+- 종목명 / 티커 검색 지원
+- 자동완성 기능
+
+---
+
+### 4.2 차트 기능
+
+- 캔들 차트 제공
+- 기간 선택 (1D, 1W, 1M 등)
+- 거래량 표시
+- 기본 기술적 지표 (추후 확장 가능)
+
+---
+
+### 4.3 전략 실행 기능 (핵심 기능 🚀)
+
+사용자가 전략을 선택하면:
+
+- 과거 데이터 기반 시뮬레이션 실행
+- 매수/매도 시점 자동 계산
+- 결과 데이터 생성
+
+#### 📌 예시 전략
+
+- 눌림목 전략
+- 돌파 전략
+- 이동평균선 전략
+
+---
+
+### 4.4 전략 리포트
+
+전략 실행 결과를 시각적으로 제공
+
+#### 포함 데이터
+
+- 총 수익률
+- 승률
+- 최대 낙폭 (MDD)
+- 거래 횟수
+
+---
+
+### 4.5 전략 비교 기능 (핵심 차별점 ⭐)
+
+여러 전략을 동시에 비교
+
+#### 비교 항목
+
+- 수익률
+- 리스크
+- 승률
+- 성과 그래프
+
+👉 사용자 의사결정 지원
+
+---
+
+## 5. 사용자 흐름 (User Flow)
+
+1. 종목 검색
+2. 차트 확인
+3. 전략 선택
+4. 백테스트 실행
+5. 결과 리포트 확인
+6. 전략 간 비교
+
+---
+
+## 6. 기술 스택
+
+### Frontend
+
+- Quasar Framework (Vue 기반)
+- Chart 라이브러리 (TradingView Lightweight Charts 추천)
+
+### Backend
+
+- Node.js
+- API 서버 (전략 실행 로직 처리)
+
+### Database
+
+- Supabase
+  - 사용자 데이터
+  - 전략 결과 저장
+  - 로그 관리
+
+---
+
+## 7. 시스템 구조
+
+[Frontend (Quasar)]
+↓
+[Node API Server]
+↓
+[Supabase DB]
+↓
+[주식 데이터 API]
+
+---
+
+## 8. 핵심 구현 포인트
+
+### ⚙️ 1. 차트 성능
+
+- 대용량 데이터 렌더링 최적화
+- 실시간 반응성 유지
+
+### ⚙️ 2. 전략 엔진
+
+- 백테스트 로직 정확성
+- 확장 가능한 구조 설계
+
+### ⚙️ 3. 데이터 처리
+
+- 미국/한국 주식 데이터 통합
+- 시계열 데이터 관리
+
+---
+
+## 9. 확장 계획 (Future)
+
+- 사용자 전략 저장 기능
+- 커스텀 전략 작성 기능
+- AI 기반 전략 추천
+- 커뮤니티 기능 (전략 공유)
+- 실시간 알림 (매수/매도 시점)
+
+---
+
+## 10. 차별화 포인트
+
+### 🔥 Alpha-ish만의 강점
+
+- 단순 차트가 아닌 **전략 비교 중심 플랫폼**
+- 직관적인 UI + 빠른 실행
+- 초보자도 쉽게 사용 가능
+- 유머러스한 브랜드 톤
+
+---
+
+## 11. 리스크 및 고려사항
+
+- 데이터 정확성
+- 백테스트 신뢰성
+- 과최적화(Overfitting) 문제
+- API 비용 관리
+
+---
+
+## 12. 결론
+
+Alpha-ish는 단순한 차트 서비스가 아니라  
+👉 **"전략 실험 + 비교 플랫폼"** 이다.
+
+투자자가 감이 아닌 데이터로 판단할 수 있도록  
+직관적이고 강력한 도구를 제공하는 것이 핵심이다.
