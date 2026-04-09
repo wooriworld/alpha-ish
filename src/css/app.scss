@@ -1,1 +1,10 @@
 // app global css
+@import './theme.css';
+
+// Alpha-ish 로고 SVG 크기
+.alpha-logo-svg {
+  width: 32px;
+  height: 32px;
+  color: #2962ff;
+  flex-shrink: 0;
+}

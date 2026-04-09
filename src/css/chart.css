@@ -1,0 +1,123 @@
+.tv-page {
+  background: var(--tv-bg-base);
+}
+
+.tv-splitter {
+  height: 100%;
+  background: var(--tv-bg-base);
+}
+
+.tv-splitter .q-splitter__separator {
+  background: var(--tv-border);
+  width: 4px !important;
+  transition: background 0.2s;
+}
+
+.tv-splitter .q-splitter__separator:hover {
+  background: var(--tv-primary);
+}
+
+.tv-splitter > .q-splitter__before {
+  overflow: hidden;
+}
+
+.tv-splitter > .q-splitter__after {
+  overflow: hidden;
+}
+
+.tv-chart-container {
+  height: 100%;
+  background: var(--tv-bg-panel);
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+}
+
+.tv-chart-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+.tv-chart-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.tv-chart-symbol {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--tv-text-primary);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.tv-chart-price-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 2px;
+}
+
+.tv-price-value {
+  font-size: 26px;
+  font-weight: 600;
+  color: var(--tv-positive-text);
+}
+
+.tv-price-change {
+  font-size: 14px;
+}
+
+.tv-price-change.positive {
+  color: var(--tv-positive-text);
+}
+
+.tv-price-change.negative {
+  color: var(--tv-negative-text);
+}
+
+.tv-tf-btn {
+  color: var(--tv-text-secondary) !important;
+  background: var(--tv-bg-card) !important;
+  border-radius: 4px !important;
+  font-size: 13px !important;
+  min-height: 30px !important;
+  padding: 0 12px !important;
+}
+
+.tv-tf-btn.tv-tf-active {
+  color: var(--tv-text-primary) !important;
+  background: var(--tv-primary) !important;
+}
+
+.tv-chart-area {
+  flex: 1;
+  background: var(--tv-bg-card);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.tv-chart-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.tv-chart-icon {
+  color: var(--tv-text-muted);
+  opacity: 0.5;
+}
+
+.tv-chart-placeholder-text {
+  color: var(--tv-text-muted);
+  font-size: 14px;
+  margin: 0;
+}

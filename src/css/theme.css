@@ -1,0 +1,18 @@
+:root {
+  --tv-bg-base: #0a0e27;
+  --tv-bg-panel: #131722;
+  --tv-bg-card: #1e222d;
+  --tv-border: #2a2e39;
+  --tv-primary: #2962ff;
+  --tv-primary-hover: #1e53e5;
+  --tv-text-primary: #ffffff;
+  --tv-text-secondary: #b2b5be;
+  --tv-text-muted: #787b86;
+  --tv-positive: #26a69a;
+  --tv-negative: #ef5350;
+  --tv-positive-text: #4caf50;
+  --tv-negative-text: #f44336;
+  --tv-best-badge: #f9a825;
+  --tv-header-height: 64px;
+  --tv-footer-height: 40px;
+}
