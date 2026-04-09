@@ -1,0 +1,4 @@
+flask==3.1.1
+flask-cors==5.0.1
+requests==2.32.3
+# pykrx==1.0.48  # 차트 OHLCV 데이터 연동 시 활성화

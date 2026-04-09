@@ -12,18 +12,7 @@
 
         <!-- 검색창 -->
         <div class="tv-search-wrapper">
-          <q-input
-            v-model="searchQuery"
-            dense
-            outlined
-            dark
-            placeholder="심볼, 지표 검색..."
-            class="tv-search-input"
-          >
-            <template #prepend>
-              <q-icon name="search" class="tv-search-icon" />
-            </template>
-          </q-input>
+          <stock-search-input @select="onSymbolSelect" />
         </div>
       </q-toolbar>
     </q-header>
@@ -39,9 +28,13 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
 import AlphaLogo from 'components/AlphaLogo.vue';
+import StockSearchInput from 'components/StockSearchInput.vue';
+import type { StockSymbol } from 'src/types/stock';
 import 'src/css/layout.css';
 
-const searchQuery = ref('');
+function onSymbolSelect(stock: StockSymbol) {
+  // TODO: 차트 연동 시 선택된 종목 전달
+  console.log('선택된 종목:', stock);
+}
 </script>
