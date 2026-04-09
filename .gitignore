@@ -31,3 +31,9 @@ yarn-error.log*
 
 # local .env files
 .env.local*
+
+# Claude
+.claude
+
+# Lock files
+package-lock.json
