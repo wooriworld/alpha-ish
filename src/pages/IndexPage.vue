@@ -62,7 +62,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref, watch, computed } from 'vue';
+import { ref, watch, computed, onMounted } from 'vue';
 import { storeToRefs } from 'pinia';
 import StrategyPanel from 'components/StrategyPanel.vue';
 import CompareDialog from 'components/CompareDialog.vue';
@@ -86,6 +86,10 @@ const selectedStockStore = useSelectedStockStore();
 const { stock: selectedStock } = storeToRefs(selectedStockStore);
 
 const { candles, isLoading, error, load } = useStockChart();
+
+onMounted(() => {
+  if (selectedStock.value) void load(selectedStock.value.symbol);
+});
 
 watch(selectedStock, (stock) => {
   if (stock) void load(stock.symbol);
