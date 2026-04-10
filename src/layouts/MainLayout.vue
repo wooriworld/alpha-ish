@@ -31,10 +31,12 @@
 import AlphaLogo from 'components/AlphaLogo.vue';
 import StockSearchInput from 'components/StockSearchInput.vue';
 import type { StockSymbol } from 'src/types/stock';
+import { useSelectedStockStore } from 'src/stores/selectedStock';
 import 'src/css/layout.css';
 
+const selectedStockStore = useSelectedStockStore();
+
 function onSymbolSelect(stock: StockSymbol) {
-  // TODO: 차트 연동 시 선택된 종목 전달
-  console.log('선택된 종목:', stock);
+  selectedStockStore.select(stock);
 }
 </script>

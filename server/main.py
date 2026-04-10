@@ -6,6 +6,7 @@ from flask import Flask
 load_dotenv()
 from flask_cors import CORS
 
+from routers.chart import chart_bp
 from routers.search import search_bp
 
 logging.basicConfig(level=logging.INFO)
@@ -22,6 +23,7 @@ CORS(
 )
 
 app.register_blueprint(search_bp, url_prefix="/api")
+app.register_blueprint(chart_bp, url_prefix="/api")
 
 
 @app.get("/health")
