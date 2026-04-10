@@ -6,7 +6,7 @@
         <div class="tv-chart-container">
           <div class="tv-chart-header">
             <div class="tv-chart-info">
-              <div class="tv-chart-symbol-row">
+              <div class="tv-chart-name-row">
                 <h2 class="tv-chart-symbol">
                   {{ selectedStock ? (selectedStock.name_kr || selectedStock.description) : '-' }}
                 </h2>
@@ -14,12 +14,8 @@
                   {{ currentPrice }}
                 </span>
               </div>
-              <div class="tv-chart-price-row">
-                <span class="tv-chart-code">{{ selectedStock?.display_symbol ?? '' }}</span>
-                <span class="tv-chart-exchange">{{ selectedStock?.exchange_name ?? '' }}</span>
-              </div>
             </div>
-            <div class="tv-timeframe-btns row q-gutter-xs">
+            <div class="tv-timeframe-btns">
               <q-btn
                 v-for="tf in timeframes"
                 :key="tf.label"
@@ -78,7 +74,12 @@ const showCompare = ref(false);
 const timeframes = [
   { label: '1일', interval: '1d', range: '1y' },
   { label: '1주', interval: '1wk', range: '2y' },
-  { label: '1달', interval: '1mo', range: '5y' },
+  { label: '1개월', interval: '1mo', range: '5y' },
+  { label: '3개월', interval: '3mo', range: '5y' },
+  { label: '6개월', interval: '6mo', range: '10y' },
+  { label: '1년', interval: '1y', range: '10y' },
+  { label: '5년', interval: '5y', range: 'max' },
+  { label: '전체', interval: 'max', range: 'max' },
 ];
 const activeTimeframe = ref('1일');
 
