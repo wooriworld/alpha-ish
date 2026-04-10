@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 
-from services import yahoo_service
+from services import dart_service, yahoo_service
 
 search_bp = Blueprint("search", __name__)
 
@@ -17,5 +17,13 @@ def search_symbols():
     if market not in ("ALL", "KRX", "US"):
         return jsonify({"error": "market은 ALL, KRX, US 중 하나여야 합니다."}), 400
 
-    results = yahoo_service.search_symbols(q, market=market, limit=limit)
+    if market == "KRX":
+        results = dart_service.search_symbols(q, limit=limit)
+    elif market == "US":
+        results = yahoo_service.search_symbols(q, market="US", limit=limit)
+    else:
+        krx = dart_service.search_symbols(q, limit=limit)
+        us = yahoo_service.search_symbols(q, market="US", limit=limit)
+        results = (krx + us)[:limit]
+
     return jsonify(results)

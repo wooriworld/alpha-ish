@@ -17,7 +17,8 @@ Vue 3 / Quasar / Node.js 를 주력으로 다루며,
 - Vue 파일 내부에 <style> 블록 작성 금지 (CSS는 src/css/ 폴더에서 관리)
 - 비즈니스 로직은 composables로 분리 (src/composables/)
 - 컴포넌트에서 직접 API 호출 금지
-- 에러 처리 및 로딩 상태 항상 구현
+- lodash 라이브러리에서 공통 쓸 수있는 것 최대한 활용
+- 에러 처리 항상 구현
 
 ## 폴더 구조 규칙
 

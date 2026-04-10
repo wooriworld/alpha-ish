@@ -1,109 +1,358 @@
-.tv-search-select {
-  min-width: 280px;
-  max-width: 420px;
-}
-
-.tv-search-select .q-field__control {
-  background: #1e222d;
-  border: 1px solid #363a45;
-  border-radius: 4px;
-  height: 36px;
-}
-
-.tv-search-select .q-field__control:hover {
-  border-color: #2962ff;
-}
-
-.tv-search-select.q-field--focused .q-field__control {
-  border-color: #2962ff;
-  box-shadow: 0 0 0 2px rgba(41, 98, 255, 0.2);
-}
-
-.tv-search-select .q-field__native,
-.tv-search-select .q-field__input {
-  color: #d1d4dc;
-  font-size: 13px;
-}
-
-.tv-search-select .q-field__prepend {
-  color: #787b86;
-}
-
-/* 드롭다운 팝업 */
-.tv-search-popup {
-  background: #1e222d;
-  border: 1px solid #363a45;
-  border-radius: 4px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
-}
-
-.tv-search-popup .q-item {
-  padding: 6px 12px;
-  min-height: 44px;
-}
-
-.tv-search-popup .q-item:hover,
-.tv-search-popup .q-item--active {
-  background: #2a2e39;
-}
-
-/* 종목 항목 */
-.stock-option {
+/* ============================================================
+   Spotlight 검색 — 헤더 트리거 버튼
+   ============================================================ */
+.spotlight-trigger {
   display: flex;
   align-items: center;
-  gap: 10px;
-  width: 100%;
+  gap: 8px;
+  padding: 6px 14px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  cursor: pointer;
+  min-width: 240px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  user-select: none;
 }
 
-.stock-option__badge {
-  font-size: 9px;
-  font-weight: 700;
-  padding: 2px 5px;
-  border-radius: 3px;
-  min-width: 28px;
-  text-align: center;
+.spotlight-trigger:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.18);
+}
+
+.spotlight-trigger__icon {
+  color: rgba(255, 255, 255, 0.45);
   flex-shrink: 0;
 }
 
-.stock-option__badge--krx {
-  background: #1a3a5c;
-  color: #4fc3f7;
-  border: 1px solid #1565c0;
-}
-
-.stock-option__badge--us {
-  background: #1a3a1a;
-  color: #81c784;
-  border: 1px solid #2e7d32;
-}
-
-.stock-option__info {
-  display: flex;
-  flex-direction: column;
+.spotlight-trigger__text {
   flex: 1;
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.32);
+}
+
+.spotlight-trigger__kbd {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  padding: 1px 5px;
+  font-family: inherit;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+/* ============================================================
+   오버레이 (body teleport)
+   ============================================================ */
+.spotlight-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.52);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 9000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding-top: 14vh;
+}
+
+/* ============================================================
+   패널 — macOS 프로스티드 글라스
+   ============================================================ */
+.spotlight-panel {
+  width: 660px;
+  max-width: calc(100vw - 40px);
+  background: rgba(26, 26, 28, 0.96);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 0.5px rgba(255, 255, 255, 0.04) inset,
+    0 28px 72px rgba(0, 0, 0, 0.8),
+    0 8px 24px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+  backdrop-filter: blur(40px);
+  -webkit-backdrop-filter: blur(40px);
+}
+
+/* ============================================================
+   입력 행
+   ============================================================ */
+.spotlight-input-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 20px;
+}
+
+.spotlight-input-row__icon {
+  color: rgba(255, 255, 255, 0.45);
+  flex-shrink: 0;
+}
+
+.spotlight-input {
+  flex: 1;
+  background: none;
+  border: none;
+  outline: none;
+  font-size: 18px;
+  color: #ffffff;
+  caret-color: #4a9eff;
+  font-weight: 400;
+  letter-spacing: -0.01em;
   min-width: 0;
 }
 
-.stock-option__symbol {
-  font-size: 12px;
-  font-weight: 600;
-  color: #d1d4dc;
-  line-height: 1.3;
+.spotlight-input::placeholder {
+  color: rgba(255, 255, 255, 0.25);
 }
 
-.stock-option__name {
-  font-size: 11px;
-  color: #787b86;
-  line-height: 1.3;
+.spotlight-input-row__clear {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  background: rgba(255, 255, 255, 0.1);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.55);
+  flex-shrink: 0;
+  padding: 0;
+  transition: background 0.12s ease;
+}
+
+.spotlight-input-row__clear:hover {
+  background: rgba(255, 255, 255, 0.18);
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.spotlight-input-row__spinner {
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   구분선
+   ============================================================ */
+.spotlight-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.07);
+}
+
+/* ============================================================
+   상태 메시지 (로딩 / 빈 결과)
+   ============================================================ */
+.spotlight-status {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 26px 20px;
+  color: rgba(255, 255, 255, 0.32);
+  font-size: 13px;
+}
+
+/* ============================================================
+   결과 목록 컨테이너 — 최대 높이 고정
+   ============================================================ */
+.spotlight-results {
+  max-height: 368px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 6px 0 10px;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+}
+
+.spotlight-results::-webkit-scrollbar {
+  width: 4px;
+}
+
+.spotlight-results::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.spotlight-results::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.spotlight-results__label {
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.22);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 4px 20px 6px;
+  margin: 0;
+}
+
+/* ============================================================
+   결과 항목 — 로고 | 티커 | 종목명 | 상장사 (4컬럼 그리드)
+   ============================================================ */
+.spotlight-item {
+  display: grid;
+  grid-template-columns: 34px 90px 1fr 80px;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 20px;
+  cursor: pointer;
+  transition: background 0.1s ease;
+}
+
+.spotlight-item:hover,
+.spotlight-item--focused {
+  background: rgba(74, 158, 255, 0.14);
+}
+
+/* 로고 */
+.spotlight-item__logo {
+  width: 34px;
+  height: 34px;
+  flex-shrink: 0;
+}
+
+.spotlight-item__logo-fallback {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+}
+
+/* 티커 */
+.spotlight-item__code {
+  font-size: 12px;
+  font-weight: 700;
+  color: #ffffff;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-/* 로딩 / 빈 상태 */
-.tv-search-empty {
-  padding: 16px 12px;
-  text-align: center;
-  color: #787b86;
+/* 종목명 */
+.spotlight-item__name {
   font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* 상장사 뱃지 */
+.spotlight-item__exchange {
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 4px;
+  white-space: nowrap;
+  justify-self: end;
+}
+
+/* KRX — KOSPI */
+.spotlight-item__exchange--kospi {
+  background: rgba(21, 80, 140, 0.55);
+  color: #79c8f0;
+  border: 1px solid rgba(79, 195, 247, 0.22);
+}
+
+/* KRX — KOSDAQ */
+.spotlight-item__exchange--kosdaq {
+  background: rgba(0, 100, 110, 0.55);
+  color: #4dd0e1;
+  border: 1px solid rgba(38, 198, 218, 0.22);
+}
+
+/* KRX — KONEX */
+.spotlight-item__exchange--konex {
+  background: rgba(80, 20, 120, 0.55);
+  color: #ce93d8;
+  border: 1px solid rgba(171, 71, 188, 0.22);
+}
+
+/* US — NASDAQ */
+.spotlight-item__exchange--nasdaq {
+  background: rgba(20, 70, 20, 0.55);
+  color: #81c784;
+  border: 1px solid rgba(129, 199, 132, 0.22);
+}
+
+/* US — NYSE */
+.spotlight-item__exchange--nyse {
+  background: rgba(120, 60, 0, 0.55);
+  color: #ffb74d;
+  border: 1px solid rgba(255, 167, 38, 0.22);
+}
+
+/* US — NASDAQ GM */
+.spotlight-item__exchange--nasdaq-gm {
+  background: rgba(40, 80, 10, 0.55);
+  color: #aed581;
+  border: 1px solid rgba(156, 204, 101, 0.22);
+}
+
+/* US — NYSE Arca */
+.spotlight-item__exchange--nyse-arca {
+  background: rgba(100, 80, 0, 0.55);
+  color: #fff176;
+  border: 1px solid rgba(255, 238, 88, 0.22);
+}
+
+/* US — NYSE American */
+.spotlight-item__exchange--nyse-american {
+  background: rgba(110, 20, 20, 0.55);
+  color: #ef9a9a;
+  border: 1px solid rgba(239, 83, 80, 0.22);
+}
+
+/* US — OTC Markets */
+.spotlight-item__exchange--otc {
+  background: rgba(50, 60, 70, 0.55);
+  color: #90a4ae;
+  border: 1px solid rgba(120, 144, 156, 0.22);
+}
+
+/* US — NASDAQ CM */
+.spotlight-item__exchange--nasdaq-cm {
+  background: rgba(0, 70, 60, 0.55);
+  color: #80cbc4;
+  border: 1px solid rgba(38, 166, 154, 0.22);
+}
+
+/* ============================================================
+   전환 애니메이션 (Vue Transition)
+   ============================================================ */
+.spotlight-enter-active,
+.spotlight-leave-active {
+  transition: opacity 0.18s ease;
+}
+
+.spotlight-enter-active .spotlight-panel,
+.spotlight-leave-active .spotlight-panel {
+  transition: transform 0.2s cubic-bezier(0.34, 1.2, 0.64, 1), opacity 0.18s ease;
+}
+
+.spotlight-enter-from,
+.spotlight-leave-to {
+  opacity: 0;
+}
+
+.spotlight-enter-from .spotlight-panel {
+  transform: scale(0.95) translateY(-10px);
+  opacity: 0;
+}
+
+.spotlight-leave-to .spotlight-panel {
+  transform: scale(0.97) translateY(-6px);
+  opacity: 0;
 }

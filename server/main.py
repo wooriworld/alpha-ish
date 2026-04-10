@@ -1,6 +1,9 @@
 import logging
 
+from dotenv import load_dotenv
 from flask import Flask
+
+load_dotenv()
 from flask_cors import CORS
 
 from routers.search import search_bp

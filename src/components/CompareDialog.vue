@@ -101,6 +101,7 @@
 
 <script setup lang="ts">
 import { computed } from 'vue';
+import { startsWith } from 'lodash';
 import 'src/css/compare.css';
 
 const props = defineProps<{ modelValue: boolean }>();
@@ -123,8 +124,8 @@ const compareRows = [
 
 function getValueClass(value: string | undefined): string {
   if (!value) return 'tv-neutral';
-  if (value.startsWith('+')) return 'tv-positive';
-  if (value.startsWith('-')) return 'tv-negative';
+  if (startsWith(value, '+')) return 'tv-positive';
+  if (startsWith(value, '-')) return 'tv-negative';
   return 'tv-neutral';
 }
 </script>
